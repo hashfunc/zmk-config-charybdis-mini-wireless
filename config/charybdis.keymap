@@ -3,6 +3,7 @@
 #include <input/processors.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define LAYER_BASE 0
 #define LAYER_AUTO_MOUSE 1
@@ -44,6 +45,16 @@
             #binding-cells = <2>;
             tapping-term-ms = <250>;
         };
+
+        hold_tap: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            retro-tap;
+            tapping-term-ms = <200>;
+        };
     };
 
     keymap {
@@ -51,9 +62,9 @@
 
         BASE {
             bindings = <
-&kp ESC         &kp Q  &kp W  &kp E         &kp R             &kp T        &kp Y          &kp U    &kp I      &kp O    &kp P          &kp GRAVE
-&kp TAB         &kp A  &kp S  &kp D         &kp F             &kp G        &kp H          &kp J    &kp K      &kp L    &kp SEMICOLON  &kp APOS
-&kp LEFT_SHIFT  &kp Z  &kp X  &kp C         &kp V             &kp B        &kp N          &kp M    &kp COMMA  &kp DOT  &kp FSLH       &mo_tog LAYER_NUMBER LAYER_NUMBER
+&kp ESC         &kp Q  &kp W  &kp E         &kp R             &kp T        &kp Y          &kp U    &kp I      &hold_tap LPAR O    &hold_tap RPAR P     &kp GRAVE
+&kp TAB         &kp A  &kp S  &kp D         &kp F             &kp G        &kp H          &kp J    &kp K      &hold_tap LBKT L    &hold_tap RBKT SQT   &kp APOS
+&kp LEFT_SHIFT  &kp Z  &kp X  &kp C         &kp V             &kp B        &kp N          &kp M    &kp COMMA  &hold_tap LBRC DOT  &hold_tap FSLH RBRC  &mo_tog LAYER_NUMBER LAYER_NUMBER
                               &kp LEFT_ALT  &kp LEFT_COMMAND  &kp SPACE    &kp BACKSPACE  &kp RET
             >;
         };
